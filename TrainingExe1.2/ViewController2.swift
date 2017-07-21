@@ -11,69 +11,69 @@ import UIKit
 class ViewController2: UIViewController {
     
     typealias Dict = [ String : String ]
-    var Mang = [Dict]()
+    var arr = [Dict]()
     var Dict2 : [ String : String ] = [ "Tên" : "Hoàn" , "Tuổi" : "21" , "Địa chỉ" : "Hà Nam" , "SDT" : "0988914635" ]
     var firt = 0
     
-    @IBOutlet weak var Ten: UITextField!
-    @IBOutlet weak var Tuoi: UITextField!
-    @IBOutlet weak var DC: UITextField!
-    @IBOutlet weak var sdt: UITextField!
+    @IBOutlet weak var name : UITextField!
+    @IBOutlet weak var age: UITextField!
+    @IBOutlet weak var adress: UITextField!
+    @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var txtAdd: UITextView!
-    @IBOutlet weak var Xem: UITextView!
-    @IBAction func Them(_ sender: Any) {
+    @IBOutlet weak var txtView: UITextView!
+    @IBAction func buttonAddNew(_ sender: Any) {
         var a = [ String : String ] ()
         if firt == 0 {
             firt = 1
-            Mang.append(Dict2)
+            arr.append(Dict2)
             Dict2 = [ "Tên" : "Mon" , "Tuổi" : "19" , "Địa chỉ" : "Đông Anh" , "SDT" : "01637633026" ]
-            Mang.append(Dict2)
+            arr.append(Dict2)
             }
-        if Ten.text == ""
+        if name.text == ""
         {
-            Xem.text = "Hãy điền đầy đủ tên và tuổi"
-        } else if  Tuoi.text == ""
+            txtView.text = "Hãy điền đầy đủ tên và tuổi"
+        } else if  age.text == ""
                 {
-                    Xem.text = "Hãy điền đầy đủ tên và tuổi"
+                    txtView.text = "Hãy điền đầy đủ tên và tuổi"
                 } else {
-                        a = [ "Tên" : Ten.text! , "Tuổi" : Tuoi.text! , "Địa chỉ" : DC.text! , "SDT" : sdt.text! ]
-                        Mang.append(a)
-                        Xem.text = "Đã thêm " + a["Tên"]! + " vào danh sách người dùng !" + "\n" + "Tên : " + a["Tên"]! + "\n" + "Tuổi : " + a["Tuổi"]! + "\n" + "Địa chỉ : " + a["Địa chỉ"]! + "\n" + "Số ĐT: " + a["SDT"]!
+                        a = [ "Tên" : name.text! , "Tuổi" : age.text! , "Địa chỉ" : adress.text! , "SDT" : phone.text! ]
+                        arr.append(a)
+                        txtView.text = "Đã thêm " + a["Tên"]! + " vào danh sách người dùng !" + "\n" + "Tên : " + a["Tên"]! + "\n" + "Tuổi : " + a["Tuổi"]! + "\n" + "Địa chỉ : " + a["Địa chỉ"]! + "\n" + "Số ĐT: " + a["SDT"]!
                         }
 
     }
     
-    @IBAction func Hiends(_ sender: Any) {
+    @IBAction func buttonView(_ sender: Any) {
         var temp = [ String : String ] ()
         var temp1 = [ String : String ] ()
         var doicho = true
         if firt == 0 {
             firt = 1
-            Mang.append(Dict2)
+            arr.append(Dict2)
             Dict2 = [ "Tên" : "Mon" , "Tuổi" : "19" , "Địa chỉ" : "Đông Anh" , "SDT" : "01637633026" ]
-            Mang.append(Dict2)
+            arr.append(Dict2)
         }
         var s : String = "Danh sách đã sắp xếp độ tuổi tăng dần :\n"
-        for i in 1...Mang.count-1 {
+        for i in 1...arr.count-1 {
             if doicho {
                 doicho = false
-                for j in 0...Mang.count-i-1 {
-                    temp = Mang[j]
-                    temp1 = Mang[j+1]
+                for j in 0...arr.count-i-1 {
+                    temp = arr[j]
+                    temp1 = arr[j+1]
                     if Int(temp["Tuổi"]!)! > Int(temp1["Tuổi"]!)! {
                         doicho = true
-                        Mang[j] = temp1
-                        Mang[j+1] = temp
+                        arr[j] = temp1
+                        arr[j+1] = temp
                     }
                 }
             } else { break }
         }
         
-        for i in 0...Mang.count-1 {
-            temp = Mang[i]
+        for i in 0...arr.count-1 {
+            temp = arr[i]
             s = s + temp["Tên"]! + "\t" + temp["Tuổi"]! + " Tuổi\n"
         }
-        Xem.text = s
+        txtView.text = s
     }
     
     override func viewDidLoad() {
